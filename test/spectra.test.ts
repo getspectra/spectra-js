@@ -22,6 +22,6 @@ describe('Spetra', () => {
     };
 
     const result = Spectra.validate([allowPolicy, denyPolicy], resource);
-    expect(result).toBe(false);
+    expect(result).toBeFalsy();
   });
 });

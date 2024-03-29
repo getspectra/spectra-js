@@ -1,3 +1,1 @@
-export class DatabaseLoader {
-  public static load(resource: any) {}
-}
+export * from './aatabase-loader';

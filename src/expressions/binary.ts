@@ -1,9 +1,17 @@
-import { ArgumentRef, ExpressionInterface, FieldName, Operation, Value } from '../types';
+import {
+  ArgumentRef,
+  BinaryExpressionDef,
+  ExpressionInterface,
+  FieldName,
+  Operation,
+  Resource,
+  Value,
+} from '../types';
 
 export class BinaryExpression implements ExpressionInterface {
   private left: FieldName;
-  private operation: Operation;
   private right: Value | ArgumentRef;
+  private operation: Operation;
 
   constructor(left: FieldName, operation: Operation, right: Value | ArgumentRef) {
     this.left = left;
@@ -11,22 +19,19 @@ export class BinaryExpression implements ExpressionInterface {
     this.operation = operation;
   }
 
-  public serialize(expression: object): string {
-    console.log(expression);
-    console.log(this.left);
-    console.log(this.right);
-    console.log(this.operation);
-
-    return '';
+  public getOperation(): string {
+    return this.operation;
   }
 
-  public deserialize(expression: string): object {
-    console.log(expression);
-    return {};
+  public getExpression(): BinaryExpressionDef {
+    return [this.left, this.operation, this.right];
   }
 
-  public evaluate(data: object): boolean {
-    console.log(data);
-    return true;
+  public jsonSerialize(): string {
+    return JSON.stringify(this.getExpression());
+  }
+
+  public evaluate(data: Resource): boolean {
+    return !!data;
   }
 }

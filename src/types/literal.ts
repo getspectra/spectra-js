@@ -1,8 +1,8 @@
+import { Operation } from './operation';
+
 export type FieldName = string;
 
 export type Value = string | boolean | number | Date | null;
-
-export type Operation = '=' | '<>' | '>' | '<' | '>=' | '<=';
 
 export type ArgumentRef = { type: 'field'; ref: FieldName };
 
@@ -15,13 +15,13 @@ export type ExpressionDef = BinaryExpressionDef | OrExpressionDef | AndExpressio
 export type BinaryExpressionDef = [FieldName, Operation, Value | ArgumentRef];
 
 export type OrExpressionDef = {
-  or: ExpressionDef[];
+  or: Array<ExpressionDef>;
 };
 
 export type AndExpressionDef = {
-  and: ExpressionDef[];
+  and: Array<ExpressionDef>;
 };
 
 export type NotExpressionDef = {
-  not: ExpressionDef[];
+  not: Array<ExpressionDef>;
 };
