@@ -1,4 +1,4 @@
-import { Effect, ExpressionInterface, PolicyInterface } from '../types';
+import { Effect, ExpressionInterface, PolicyInterface } from '@/types';
 
 export class Policy {
   private description: string;

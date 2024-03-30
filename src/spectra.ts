@@ -1,7 +1,7 @@
-import { ApplyEvaluator } from './apply-evaluator';
-import { Policy } from './policy';
-import { Resource } from './types';
-import { bisectArray } from './utils';
+import { ApplyEvaluator } from '@/apply-evaluator';
+import { Policy } from '@/policy';
+import { Resource } from '@/types';
+import { bisectArray } from '@/utils';
 
 export class Spectra {
   public static validate(policies: Array<Policy>, resource: Resource): boolean {

@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
-import { Spectra } from '../src/index';
-import { Policy } from '../src/policy';
-import { BinaryExpression } from '../src/expressions';
+import { Spectra } from '@/index';
+import { Policy } from '@/policy';
+import { BinaryExpression } from '@/expressions';
 
 describe('Spetra', () => {
   test('base', () => {

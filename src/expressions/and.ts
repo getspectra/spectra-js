@@ -1,5 +1,5 @@
-import { BinaryExpression } from '.';
-import { AndExpressionDef, ExpressionInterface } from '../types';
+import { AndExpressionDef, ExpressionInterface } from '@/types';
+import { BinaryExpression } from './binary';
 
 export class AndExpression implements ExpressionInterface {
   private expressions: Array<BinaryExpression>;

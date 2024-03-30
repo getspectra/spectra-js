@@ -6,7 +6,7 @@ import {
   Operation,
   Resource,
   Value,
-} from '../types';
+} from '@/types';
 
 export class BinaryExpression implements ExpressionInterface {
   private left: FieldName;

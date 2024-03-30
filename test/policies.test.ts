@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals';
-import { Policy } from '../src/policy';
-import { BinaryExpression } from '../src/expressions';
+import { Policy } from '@/policy';
+import { BinaryExpression } from '@/expressions';
 
 describe('Policies', () => {
   test('allow and deny', () => {

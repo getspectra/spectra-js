@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { BinaryExpression } from '../../src/expressions';
+import { BinaryExpression } from '@/expressions';
 
 describe('Binary Expression', () => {
   test('base serialize', () => {
