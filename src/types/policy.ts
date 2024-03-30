@@ -1,5 +1,6 @@
-import { Effect } from './literal';
 import { ExpressionInterface } from './expression';
+
+export type Effect = 'ALLOW' | 'DENY';
 
 export type PolicyInterface = {
   description?: string;

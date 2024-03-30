@@ -3,10 +3,16 @@ import { BinaryExpression, AndExpression } from '@/expressions';
 
 describe('And Expression', () => {
   test('base serialize', () => {
-    const binary = new BinaryExpression('user.id', '=', 1);
-    const and = new AndExpression([binary]);
-    const serializedBinary = and.jsonSerialize();
-    const expected = JSON.stringify({ and: [['user.id', '=', 1]] });
-    expect(serializedBinary).toBe(expected);
+    const userId = new BinaryExpression('user.id', '=', 1);
+    const userName = new BinaryExpression('user.name', '<>', null);
+    const and = new AndExpression([userId, userName]);
+    const serializedAnd = and.jsonSerialize();
+    const expected = JSON.stringify({
+      and: [
+        ['user.id', '=', 1],
+        ['user.name', '<>', null],
+      ],
+    });
+    expect(serializedAnd).toBe(expected);
   });
 });

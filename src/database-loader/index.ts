@@ -1,1 +1,1 @@
-export * from './aatabase-loader';
+export * from './database-loader';

@@ -1,10 +1,9 @@
-import { AndExpressionDef, ExpressionInterface } from '@/types';
-import { BinaryExpression } from './binary';
+import { ExpressionInterface, AndExpressionDefine } from '@/types';
 
 export class AndExpression implements ExpressionInterface {
-  private expressions: Array<BinaryExpression>;
+  private expressions: Array<ExpressionInterface>;
 
-  constructor(expressions: Array<BinaryExpression>) {
+  constructor(expressions: Array<ExpressionInterface>) {
     this.expressions = expressions;
   }
 
@@ -12,7 +11,7 @@ export class AndExpression implements ExpressionInterface {
     return 'AND';
   }
 
-  public getExpression(): AndExpressionDef {
+  public getExpression(): AndExpressionDefine {
     return {
       and: this.expressions.map((expression) => expression.getExpression()),
     };

@@ -4,7 +4,7 @@ import { Policy } from '@/policy';
 import { BinaryExpression } from '@/expressions';
 
 describe('Spetra', () => {
-  test('base', () => {
+  test('basic usage', () => {
     const allowPolicy = new Policy({
       applyFilter: new BinaryExpression('user.id', '=', 1),
       permissions: ['EDIT_FILE'],

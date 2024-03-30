@@ -1,19 +1,18 @@
 import {
-  ArgumentRef,
-  BinaryExpressionDef,
   ExpressionInterface,
+  BinaryExpressionDefine,
   FieldName,
+  FieldValue,
   Operation,
   Resource,
-  Value,
 } from '@/types';
 
 export class BinaryExpression implements ExpressionInterface {
   private left: FieldName;
-  private right: Value | ArgumentRef;
+  private right: FieldValue;
   private operation: Operation;
 
-  constructor(left: FieldName, operation: Operation, right: Value | ArgumentRef) {
+  constructor(left: FieldName, operation: Operation, right: FieldValue) {
     this.left = left;
     this.right = right;
     this.operation = operation;
@@ -23,7 +22,7 @@ export class BinaryExpression implements ExpressionInterface {
     return this.operation;
   }
 
-  public getExpression(): BinaryExpressionDef {
+  public getExpression(): BinaryExpressionDefine {
     return [this.left, this.operation, this.right];
   }
 

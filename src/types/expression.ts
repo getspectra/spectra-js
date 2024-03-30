@@ -1,8 +1,9 @@
-import { ExpressionDef, Resource } from './literal';
+import { Resource } from './data-loader';
+import { ExpressionDefine } from './literal';
 
 export type ExpressionInterface = {
   getOperation(): string;
-  getExpression(): ExpressionDef;
+  getExpression(): ExpressionDefine;
   evaluate(data: Resource): boolean;
   jsonSerialize(): string;
 };
