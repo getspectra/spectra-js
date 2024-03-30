@@ -1,3 +1,8 @@
+export * from './expression';
+
+/**
+ * @description Bisect an array into two arrays based on a callback.
+ */
 export function bisectArray<T>(
   array: Array<T>,
   callback: (data: T) => boolean

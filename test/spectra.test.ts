@@ -3,7 +3,7 @@ import { Spectra } from '@/index';
 import { Policy } from '@/policy';
 import { BinaryExpression } from '@/expressions';
 
-describe('Spetra', () => {
+describe('Spectra', () => {
   test('basic usage', () => {
     const allowPolicy = new Policy({
       applyFilter: new BinaryExpression('user.id', '=', 1),
