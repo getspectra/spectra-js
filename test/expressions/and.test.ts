@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { BinaryExpression, AndExpression } from '@/expressions';
+import { BinaryExpression, AndExpression } from '@/index';
 
 describe('And Expression', () => {
   test('base serialize', () => {

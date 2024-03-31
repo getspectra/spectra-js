@@ -1,11 +1,25 @@
 {
   "name": "spectra.js",
-  "private": true,
   "version": "0.0.0",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Palm Civet",
+    "email": "palmcivet_email@qq.com",
+    "url": "https://github.com/palmcivet/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/palmcivet/spectra.js"
+  },
+  "description": "",
+  "keywords": [],
   "type": "module",
   "scripts": {
     "dev": "jest --watch",
-    "build": "tsc",
+    "build": "tsc -b tsconfig.json",
     "test": "jest"
   },
   "devDependencies": {

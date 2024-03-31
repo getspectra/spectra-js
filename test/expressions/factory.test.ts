@@ -1,14 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import {
-  AndExpression,
-  BinaryExpression,
-  and,
-  eq,
-  gte,
-  lt,
-  not,
-  or,
-} from '@/expressions';
+import { AndExpression, BinaryExpression, and, eq, gte, lt, not, or } from '@/index';
 
 describe('Expression Factory', () => {
   test('mixed expressions', () => {
