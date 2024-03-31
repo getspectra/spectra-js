@@ -1,3 +1,4 @@
+import { DatabaseLoader } from '@/database-loader';
 import {
   ExpressionInterface,
   BinaryExpressionDefine,
@@ -6,6 +7,7 @@ import {
   Operation,
   Resource,
 } from '@/types';
+import { compareValue } from '@/utils';
 
 export class BinaryExpression implements ExpressionInterface {
   private left: FieldName;
@@ -31,6 +33,8 @@ export class BinaryExpression implements ExpressionInterface {
   }
 
   public evaluate(data: Resource): boolean {
-    return !!data;
+    const leftValue = DatabaseLoader.getValueFromKey(data, this.left);
+    const rightValue = DatabaseLoader.getValueFromKey(data, this.right);
+    return compareValue(leftValue, this.operation, rightValue);
   }
 }

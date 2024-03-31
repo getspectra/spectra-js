@@ -1,14 +1,8 @@
-export type Operation =
-  | '='
-  | '!='
-  | '<>'
-  | '>'
-  | '>='
-  | '<'
-  | '<='
-  | 'in'
-  | 'nin'
-  | 'not_in';
+export type NumberOperation = '=' | '!=' | '<>' | '>' | '>=' | '<' | '<=';
+
+export type ArrayOperation = 'in' | 'nin' | 'not_in';
+
+export type Operation = NumberOperation | ArrayOperation;
 
 export enum OperationEnum {
   EQ = '=',

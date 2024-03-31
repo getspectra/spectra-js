@@ -18,7 +18,7 @@ export class NotExpression implements ExpressionInterface {
   }
 
   public evaluate(data: object): boolean {
-    return this.expression.evaluate(data);
+    return !this.expression.evaluate(data);
   }
 
   public jsonSerialize(): string {

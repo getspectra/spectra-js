@@ -1,32 +1,46 @@
 import { describe, expect, test } from '@jest/globals';
-import { AndExpression, BinaryExpression, and, eq, gte, lt, not, or } from '@/index';
+import {
+  AndExpression,
+  BinaryExpression,
+  and,
+  not,
+  eq,
+  ne,
+  neq,
+  gt,
+  gte,
+  lt,
+  lte,
+} from '@/index';
 
 describe('Expression Factory', () => {
   test('mixed expressions', () => {
     const andExpression = and([
       ['user.id', '<>', 0],
+      {
+        or: [
+          ['team.name', '<>', null],
+          ['team.alias', '!=', null],
+        ],
+      },
       not(['user.name', '=', null]),
-      or([
-        ['team.name', '<>', null],
-        ['team.alias', '!=', null],
-      ]),
       new AndExpression([
         new BinaryExpression('file.id', '!=', 0),
         new BinaryExpression('file.name', '<>', null),
       ]),
     ]);
-    const serializedAnd = andExpression.jsonSerialize();
+    const serializedExpression = andExpression.jsonSerialize();
     const expected = JSON.stringify({
       and: [
         ['user.id', '<>', 0],
-        {
-          not: ['user.name', '=', null],
-        },
         {
           or: [
             ['team.name', '<>', null],
             ['team.alias', '!=', null],
           ],
+        },
+        {
+          not: ['user.name', '=', null],
         },
         {
           and: [
@@ -36,27 +50,55 @@ describe('Expression Factory', () => {
         },
       ],
     });
-    expect(serializedAnd).toBe(expected);
+    expect(serializedExpression).toBe(expected);
   });
 
   test('eq factory', () => {
-    const eqExpression = eq('user.name', 'user_name');
-    const serializedEq = eqExpression.jsonSerialize();
+    const expression = eq('user.name', 'user_name');
+    const serializedExpression = expression.jsonSerialize();
     const expected = JSON.stringify(['user.name', '=', 'user_name']);
-    expect(serializedEq).toBe(expected);
+    expect(serializedExpression).toBe(expected);
+  });
+
+  test('ne factory', () => {
+    const expression = ne('user.name', 'user_name');
+    const serializedExpression = expression.jsonSerialize();
+    const expected = JSON.stringify(['user.name', '!=', 'user_name']);
+    expect(serializedExpression).toBe(expected);
+  });
+
+  test('neq factory', () => {
+    const expression = neq('user.name', 'user_name');
+    const serializedExpression = expression.jsonSerialize();
+    const expected = JSON.stringify(['user.name', '!=', 'user_name']);
+    expect(serializedExpression).toBe(expected);
+  });
+
+  test('gt factory', () => {
+    const expression = gt('user.age', 18);
+    const serializedExpression = expression.jsonSerialize();
+    const expected = JSON.stringify(['user.age', '>', 18]);
+    expect(serializedExpression).toBe(expected);
   });
 
   test('gte factory', () => {
-    const gteExpression = gte('user.age', 18);
-    const serializedGte = gteExpression.jsonSerialize();
+    const expression = gte('user.age', 18);
+    const serializedExpression = expression.jsonSerialize();
     const expected = JSON.stringify(['user.age', '>=', 18]);
-    expect(serializedGte).toBe(expected);
+    expect(serializedExpression).toBe(expected);
   });
 
   test('lt factory', () => {
-    const ltExpression = lt('files.count', 10);
-    const serializedLt = ltExpression.jsonSerialize();
+    const expression = lt('files.count', 10);
+    const serializedExpression = expression.jsonSerialize();
     const expected = JSON.stringify(['files.count', '<', 10]);
-    expect(serializedLt).toBe(expected);
+    expect(serializedExpression).toBe(expected);
+  });
+
+  test('lte factory', () => {
+    const expression = lte('files.count', 9);
+    const serializedExpression = expression.jsonSerialize();
+    const expected = JSON.stringify(['files.count', '<=', 9]);
+    expect(serializedExpression).toBe(expected);
   });
 });

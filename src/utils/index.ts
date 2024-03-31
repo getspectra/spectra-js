@@ -1,4 +1,5 @@
 export * from './expression';
+export * from './compare';
 
 /**
  * @description Bisect an array into two arrays based on a callback.
