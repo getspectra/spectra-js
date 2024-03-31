@@ -1,4 +1,4 @@
-import { ExpressionInterface, AndExpressionDefine } from '@/types';
+import { ExpressionInterface, AndExpressionDefine, FieldName } from '@/types';
 
 export class AndExpression implements ExpressionInterface {
   private expressions: Array<ExpressionInterface>;
@@ -15,6 +15,12 @@ export class AndExpression implements ExpressionInterface {
     return {
       and: this.expressions.map((expression) => expression.getExpression()),
     };
+  }
+
+  public getFields(): Array<FieldName> {
+    return this.expressions.reduce((fields, expression) => {
+      return fields.concat(expression.getFields());
+    }, [] as Array<FieldName>);
   }
 
   public evaluate(data: object): boolean {

@@ -1,5 +1,8 @@
 import { ArrayOperation, Operation, OperationEnum } from '@/types';
 
+/**
+ * @description Compare an array with a value based on an operation.
+ */
 function compareArray<T>(leftValue: T, operation: ArrayOperation, rightValue: Array<T>) {
   switch (operation) {
     case OperationEnum.IN:
@@ -12,6 +15,9 @@ function compareArray<T>(leftValue: T, operation: ArrayOperation, rightValue: Ar
   }
 }
 
+/**
+ * @description Compare two values based on an operation.
+ */
 export function compareValue<T = number>(
   leftValue: T,
   operation: Operation,

@@ -1,6 +1,6 @@
 import { Operation } from './operation';
 
-export type FieldName = string;
+export type FieldName = `${string}.${string}`;
 
 export type FieldValue = ArgumentValue | ArgumentRef;
 

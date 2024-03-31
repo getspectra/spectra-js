@@ -15,11 +15,10 @@ describe('Spectra', () => {
       effect: 'DENY',
     });
 
-    const resource = {
-      user: { id: 1 },
-    };
+    const truthyResult = Spectra.validate([allowPolicy, denyPolicy], { 'user.id': 1 });
+    expect(truthyResult).toBeTruthy();
 
-    const result = Spectra.validate([allowPolicy, denyPolicy], resource);
-    expect(result).toBeFalsy();
+    const falsyResult = Spectra.validate([allowPolicy, denyPolicy], { 'user.id': 2 });
+    expect(falsyResult).toBeFalsy();
   });
 });

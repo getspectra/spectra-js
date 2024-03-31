@@ -1,10 +1,15 @@
-import { Effect, ExpressionInterface, PolicyInterface } from '@/types';
+import {
+  PolicyEffect,
+  ExpressionInterface,
+  PolicyInterface,
+  DataInterface,
+} from '@/types';
 
 export class Policy {
   private description: string;
   private applyFilter: ExpressionInterface;
   private permissions: Array<string>;
-  private effect: Effect;
+  private effect: PolicyEffect;
 
   constructor({ description = '', applyFilter, permissions, effect }: PolicyInterface) {
     this.description = description;
@@ -25,7 +30,11 @@ export class Policy {
     return this.permissions;
   }
 
-  public getEffect(): Effect {
+  public getEffect(): PolicyEffect {
     return this.effect;
+  }
+
+  public apply(data: DataInterface): boolean {
+    return this.getApplyFilter().evaluate(data);
   }
 }

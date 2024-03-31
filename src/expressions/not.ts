@@ -1,4 +1,4 @@
-import { ExpressionInterface, NotExpressionDefine } from '@/types';
+import { ExpressionInterface, FieldName, NotExpressionDefine } from '@/types';
 
 export class NotExpression implements ExpressionInterface {
   private expression: ExpressionInterface;
@@ -15,6 +15,10 @@ export class NotExpression implements ExpressionInterface {
     return {
       not: this.expression.getExpression(),
     };
+  }
+
+  public getFields(): Array<FieldName> {
+    return this.expression.getFields();
   }
 
   public evaluate(data: object): boolean {

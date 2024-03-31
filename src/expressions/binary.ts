@@ -1,13 +1,12 @@
-import { DatabaseLoader } from '@/database-loader';
 import {
   ExpressionInterface,
   BinaryExpressionDefine,
   FieldName,
   FieldValue,
   Operation,
-  Resource,
+  DataInterface,
 } from '@/types';
-import { compareValue } from '@/utils';
+import { compareValue, getValueFromKey, isArgumentRef } from '@/utils';
 
 export class BinaryExpression implements ExpressionInterface {
   private left: FieldName;
@@ -28,13 +27,23 @@ export class BinaryExpression implements ExpressionInterface {
     return [this.left, this.operation, this.right];
   }
 
+  public getFields(): Array<FieldName> {
+    const fields = [this.left];
+
+    if (isArgumentRef(this.right)) {
+      fields.push(this.right.ref);
+    }
+
+    return fields;
+  }
+
   public jsonSerialize(): string {
     return JSON.stringify(this.getExpression());
   }
 
-  public evaluate(data: Resource): boolean {
-    const leftValue = DatabaseLoader.getValueFromKey(data, this.left);
-    const rightValue = DatabaseLoader.getValueFromKey(data, this.right);
+  public evaluate(data: DataInterface): boolean {
+    const leftValue = getValueFromKey(data, this.left);
+    const rightValue = getValueFromKey(data, this.right);
     return compareValue(leftValue, this.operation, rightValue);
   }
 }

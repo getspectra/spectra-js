@@ -1,4 +1,4 @@
-import { ExpressionInterface, OrExpressionDefine } from '@/types';
+import { ExpressionInterface, FieldName, OrExpressionDefine } from '@/types';
 
 export class OrExpression implements ExpressionInterface {
   private expressions: Array<ExpressionInterface>;
@@ -15,6 +15,12 @@ export class OrExpression implements ExpressionInterface {
     return {
       or: this.expressions.map((expression) => expression.getExpression()),
     };
+  }
+
+  public getFields(): Array<FieldName> {
+    return this.expressions.reduce((fields, expression) => {
+      return fields.concat(expression.getFields());
+    }, [] as Array<FieldName>);
   }
 
   public evaluate(data: object): boolean {

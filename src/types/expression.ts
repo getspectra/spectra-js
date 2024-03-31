@@ -1,9 +1,10 @@
-import { Resource } from './data-loader';
-import { ExpressionDefine } from './literal';
+import { DataInterface } from './data-loader';
+import { ExpressionDefine, FieldName } from './literal';
 
 export type ExpressionInterface = {
   getOperation(): string;
   getExpression(): ExpressionDefine;
-  evaluate(data: Resource): boolean;
+  getFields(): Array<FieldName>;
+  evaluate(data: DataInterface): boolean;
   jsonSerialize(): string;
 };
