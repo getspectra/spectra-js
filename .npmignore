@@ -12,10 +12,14 @@ node_modules
 dist
 dist-ssr
 build
+src
+test
+example
+jest.config.cjs
+tsconfig.*
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+.vscode
 .idea
 .DS_Store
 *.suo

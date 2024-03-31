@@ -18,13 +18,14 @@
   "keywords": [],
   "type": "module",
   "scripts": {
-    "dev": "jest --watch",
-    "build": "tsc -b tsconfig.json",
+    "dev": "jest --watchAll",
+    "build": "rimraf build && tsc -b tsconfig.build.json",
     "test": "jest"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "jest": "^29.7.0",
+    "rimraf": "^5.0.5",
     "ts-jest": "^29.1.2",
     "typescript": "^5.2.2"
   }

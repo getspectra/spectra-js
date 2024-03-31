@@ -1,5 +1,5 @@
 /**
- * @typedef {import("jest").JestConfigWithTsJest}
+ * @typedef {import("jest").Config}
  */
 module.exports = {
   verbose: true,
@@ -9,5 +9,10 @@ module.exports = {
   moduleFileExtensions: ['js', 'ts'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+  },
+  global: {
+    'ts-jest': {
+      tsConfig: 'tsconfig.json',
+    },
   },
 };
