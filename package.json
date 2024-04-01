@@ -20,7 +20,8 @@
   "scripts": {
     "dev": "jest --watchAll",
     "build": "rimraf build && tsc -b tsconfig.build.json",
-    "test": "jest"
+    "test": "jest",
+    "test:cov": "jest --coverage"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",

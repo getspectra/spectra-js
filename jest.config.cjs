@@ -10,9 +10,4 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  global: {
-    'ts-jest': {
-      tsConfig: 'tsconfig.json',
-    },
-  },
 };
