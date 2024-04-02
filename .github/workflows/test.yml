@@ -35,8 +35,9 @@ jobs:
 
       - name: Setup docs
         run: |
-          - cp -r coverage gh/coverage
-          - cp README.md gh/index.md
+          mkdir gh
+          cp -r coverage gh/coverage
+          cp README.md gh/README.md
 
       - name: Deploy coverage
         uses: peaceiris/actions-gh-pages@v3
