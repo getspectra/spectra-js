@@ -21,7 +21,7 @@ Inspired by [《How we built a custom permissions DSL at Figma》](https://www.f
 ## Installing
 
 ```bash
-pnpm install spectra-js
+pnpm install @getspectra/spectra-js
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ import {
   parseDependences,
   ResourceInterface,
   DataInterface,
- } from 'spectra-js';
+ } from '@getspectra/spectra-js';
 
 function loadDataFromDatabase(resources: ResourceInterface): DataInterface {
   return {

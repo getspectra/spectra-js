@@ -1,4 +1,5 @@
-import { ArrayOperation, Operation, OperationEnum } from '@/types';
+import { ArrayOperation, Operation } from '@getspectra/spectra-typings';
+import { OperationEnum } from '@/types';
 
 /**
  * @description Compare an array with a value based on an operation.

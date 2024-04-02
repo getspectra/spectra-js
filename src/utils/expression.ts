@@ -1,17 +1,25 @@
 import {
+  ExpressionDefinition,
+  BinaryExpressionDefinition,
+  AndExpressionDefinition,
+  OrExpressionDefinition,
+  NotExpressionDefinition,
+  ArgumentRef,
+} from '@getspectra/spectra-typings';
+import {
   BinaryExpression,
   AndExpression,
   OrExpression,
   NotExpression,
 } from '@/expressions';
-import {
-  ExpressionDefine,
-  ExpressionInterface,
-  BinaryExpressionDefine,
-  AndExpressionDefine,
-  OrExpressionDefine,
-  NotExpressionDefine,
-} from '@/types';
+import { ExpressionInterface } from '@/types';
+
+/**
+ * @description Check if the key is an ArgumentRef.
+ */
+export function isArgumentRef(key: any): key is ArgumentRef {
+  return typeof key === 'object' && 'ref' in key && 'type' in key;
+}
 
 /**
  * @description Check if an expression is a valid expression interface.
@@ -32,7 +40,7 @@ export function isValidExpressionInterface(
  */
 export function isValidBinaryExpressionDefine(
   expression: any
-): expression is BinaryExpressionDefine {
+): expression is BinaryExpressionDefinition {
   if (!Array.isArray(expression)) {
     return false;
   }
@@ -77,7 +85,7 @@ export function isValidBinaryExpressionDefine(
  */
 export function isValidAndExpressionDefine(
   expression: any
-): expression is AndExpressionDefine {
+): expression is AndExpressionDefinition {
   if (typeof expression !== 'object') {
     return false;
   }
@@ -94,7 +102,7 @@ export function isValidAndExpressionDefine(
  */
 export function isValidOrExpressionDefine(
   expression: any
-): expression is OrExpressionDefine {
+): expression is OrExpressionDefinition {
   if (typeof expression !== 'object') {
     return false;
   }
@@ -111,14 +119,16 @@ export function isValidOrExpressionDefine(
  */
 export function isValidNotExpressionDefine(
   expression: any
-): expression is NotExpressionDefine {
+): expression is NotExpressionDefinition {
   return typeof expression === 'object' && expression.not !== undefined;
 }
 
 /**
  * @description Check if an expression is a valid expression definition.
  */
-export function isValidExpressionDefine(expression: any): expression is ExpressionDefine {
+export function isValidExpressionDefine(
+  expression: any
+): expression is ExpressionDefinition {
   return (
     isValidBinaryExpressionDefine(expression) ||
     isValidAndExpressionDefine(expression) ||

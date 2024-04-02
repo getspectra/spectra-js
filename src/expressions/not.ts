@@ -1,4 +1,5 @@
-import { ExpressionInterface, FieldName, NotExpressionDefine } from '@/types';
+import { FieldName, NotExpressionDefinition } from '@getspectra/spectra-typings';
+import { ExpressionInterface } from '@/types';
 
 export class NotExpression implements ExpressionInterface {
   private expression: ExpressionInterface;
@@ -11,7 +12,7 @@ export class NotExpression implements ExpressionInterface {
     return 'NOT';
   }
 
-  public getExpression(): NotExpressionDefine {
+  public getExpression(): NotExpressionDefinition {
     return {
       not: this.expression.getExpression(),
     };

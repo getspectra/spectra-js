@@ -1,9 +1,9 @@
+import { ExpressionDefinition, FieldName } from '@getspectra/spectra-typings';
 import { DataInterface } from './data-loader';
-import { ExpressionDefine, FieldName } from './literal';
 
 export type ExpressionInterface = {
   getOperation(): string;
-  getExpression(): ExpressionDefine;
+  getExpression(): ExpressionDefinition;
   getFields(): Array<FieldName>;
   evaluate(data: DataInterface): boolean;
   jsonSerialize(): string;

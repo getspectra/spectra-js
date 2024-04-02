@@ -1,4 +1,5 @@
-import { ExpressionInterface, FieldName, OrExpressionDefine } from '@/types';
+import { FieldName, OrExpressionDefinition } from '@getspectra/spectra-typings';
+import { ExpressionInterface } from '@/types';
 
 export class OrExpression implements ExpressionInterface {
   private expressions: Array<ExpressionInterface>;
@@ -11,7 +12,7 @@ export class OrExpression implements ExpressionInterface {
     return 'OR';
   }
 
-  public getExpression(): OrExpressionDefine {
+  public getExpression(): OrExpressionDefinition {
     return {
       or: this.expressions.map((expression) => expression.getExpression()),
     };

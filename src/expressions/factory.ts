@@ -1,10 +1,5 @@
-import {
-  ExpressionDefine,
-  ExpressionInterface,
-  OperationEnum,
-  FieldName,
-  FieldValue,
-} from '@/types';
+import { ExpressionDefinition, FieldName, FieldValue } from '@getspectra/spectra-typings';
+import { ExpressionInterface, OperationEnum } from '@/types';
 import { normalizeExpression } from '@/utils';
 import { BinaryExpression } from './binary';
 import { AndExpression } from './and';
@@ -12,7 +7,7 @@ import { NotExpression } from './not';
 import { OrExpression } from './or';
 
 export function and(
-  expressions: Array<ExpressionInterface | ExpressionDefine>
+  expressions: Array<ExpressionInterface | ExpressionDefinition>
 ): AndExpression {
   const normalizedExpressions = expressions.map((expression) =>
     normalizeExpression(expression)
@@ -21,7 +16,7 @@ export function and(
 }
 
 export function or(
-  expressions: Array<ExpressionInterface | ExpressionDefine>
+  expressions: Array<ExpressionInterface | ExpressionDefinition>
 ): OrExpression {
   const normalizedExpressions = expressions.map((expression) =>
     normalizeExpression(expression)
@@ -29,7 +24,9 @@ export function or(
   return new OrExpression(normalizedExpressions);
 }
 
-export function not(expression: ExpressionInterface | ExpressionDefine): NotExpression {
+export function not(
+  expression: ExpressionInterface | ExpressionDefinition
+): NotExpression {
   const normalizedExpression = normalizeExpression(expression);
   return new NotExpression(normalizedExpression);
 }

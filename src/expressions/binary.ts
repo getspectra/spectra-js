@@ -1,11 +1,10 @@
 import {
-  ExpressionInterface,
-  BinaryExpressionDefine,
+  BinaryExpressionDefinition,
   FieldName,
   FieldValue,
   Operation,
-  DataInterface,
-} from '@/types';
+} from '@getspectra/spectra-typings';
+import { ExpressionInterface, DataInterface } from '@/types';
 import { compareValue, getValueFromKey, isArgumentRef } from '@/utils';
 
 export class BinaryExpression implements ExpressionInterface {
@@ -23,7 +22,7 @@ export class BinaryExpression implements ExpressionInterface {
     return this.operation;
   }
 
-  public getExpression(): BinaryExpressionDefine {
+  public getExpression(): BinaryExpressionDefinition {
     return [this.left, this.operation, this.right];
   }
 

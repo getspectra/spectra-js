@@ -1,4 +1,5 @@
-import { ExpressionInterface, AndExpressionDefine, FieldName } from '@/types';
+import { AndExpressionDefinition, FieldName } from '@getspectra/spectra-typings';
+import { ExpressionInterface } from '@/types';
 
 export class AndExpression implements ExpressionInterface {
   private expressions: Array<ExpressionInterface>;
@@ -11,7 +12,7 @@ export class AndExpression implements ExpressionInterface {
     return 'AND';
   }
 
-  public getExpression(): AndExpressionDefine {
+  public getExpression(): AndExpressionDefinition {
     return {
       and: this.expressions.map((expression) => expression.getExpression()),
     };

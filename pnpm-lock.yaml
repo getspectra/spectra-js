@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  '@getspectra/spectra-typings':
+    specifier: ^0.0.5
+    version: 0.0.5
+
 devDependencies:
   '@jest/globals':
     specifier: ^29.7.0
@@ -360,6 +365,10 @@ packages:
   /@bcoe/v8-coverage@0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
+
+  /@getspectra/spectra-typings@0.0.5:
+    resolution: {integrity: sha512-AzhWVj/An8MwEyO1R1RlDozG1PC1uJA4ljggnCZYIzV7wTmFy4uz88msttOE76DdlIhyBqKGSxXOhYOrT1xwiA==}
+    dev: false
 
   /@isaacs/cliui@8.0.2:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
