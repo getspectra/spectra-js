@@ -1,6 +1,6 @@
 # Spectra JS
 
-[![Test](https://github.com/palmcivet/spectra.js/actions/workflows/test.yml/badge.svg)](.github/workflows/test.yml) [![Coverage](./badges.svg)](./lcov-report/index.html) [![GPR](https://img.shields.io/npm/v/spectra.js.svg)](https://www.npmjs.com/package/spectra.js) ![License](https://img.shields.io/github/license/palmcivet/spectra.js)
+[![Test](https://github.com/palmcivet/spectra.js/actions/workflows/test.yml/badge.svg)](.github/workflows/test.yml) [![Coverage](./coverage/badges.svg)](./coverage/lcov-report/index.html) [![GPR](https://img.shields.io/npm/v/spectra.js.svg)](https://www.npmjs.com/package/spectra.js) ![License](https://img.shields.io/github/license/palmcivet/spectra.js)
 
 - [Spectra JS](#spectra-js)
   - [Motivation](#motivation)
