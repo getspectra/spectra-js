@@ -31,11 +31,12 @@ jobs:
         with:
           source: ./coverage/coverage-summary.json
           output: ./coverage/badges.svg
-          jsonPath: totals.percent_covered
+          jsonPath: total.lines.pct
 
       - name: Deploy coverage
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./coverage
           publish_branch: gh-pages
+          publish_dir: ./coverage
+          destination_dir: ./docs
