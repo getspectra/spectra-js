@@ -1,6 +1,6 @@
 # Spectra JS
 
-[![Test](./actions/workflows/test.yml/badge.svg)](.github/workflows/test.yml) [![Coverage](./gh-pages/coverage/badges.svg)](./gh-pages/coverage/lcov-report/index.html) [![GPR](https://img.shields.io/npm/v/spectra-js.svg)](https://www.npmjs.com/package/spectra-js) [![License](https://img.shields.io/github/license/getspectra/spectra-js)](./LICENSE)
+[![Test](https://github.com/getspectra/spectra-js/actions/workflows/test.yml/badge.svg)](.github/workflows/test.yml) [![Coverage](https://getspectra.github.io/spectra-js/coverage/badges.svg)](https://getspectra.github.io/spectra-js/coverage/lcov-report/index.html) [![NPM](https://img.shields.io/npm/v/spectra-js.svg)](https://www.npmjs.com/package/spectra-js) [![License](https://img.shields.io/github/license/getspectra/spectra-js)](./LICENSE)
 
 - [Spectra JS](#spectra-js)
   - [Motivation](#motivation)
