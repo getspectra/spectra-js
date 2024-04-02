@@ -1,5 +1,7 @@
 # Spectra JS
 
+[![Test](https://github.com/getspectra/spectra-js/actions/workflows/test.yml/badge.svg)](.github/workflows/test.yml) [![Coverage](https://getspectra.github.io/spectra-js/coverage/badges.svg)](https://getspectra.github.io/spectra-js/coverage/lcov-report/index.html) [![NPM](https://img.shields.io/npm/v/spectra-js.svg)](https://www.npmjs.com/package/spectra-js) [![License](https://img.shields.io/github/license/getspectra/spectra-js)](./LICENSE)
+
 - [Spectra JS](#spectra-js)
   - [Motivation](#motivation)
   - [See also](#see-also)
@@ -13,13 +15,13 @@ Inspired by [《How we built a custom permissions DSL at Figma》](https://www.f
 
 ## See also
 
-- [overtrue/spectra](https://github.com/overtrue/spectra) for PHP
-- [ramzeng/spectra](https://github.com/ramzeng/spectra) for Go
+- [spectra-php](https://github.com/getspectra/spectra-php) for PHP
+- [spectra-go](https://github.com/getspectra/spectra-go) for Go
 
 ## Installing
 
 ```bash
-pnpm install spectra.js
+pnpm install spectra-js
 ```
 
 ## Usage
@@ -31,7 +33,7 @@ import {
   parseDependences,
   ResourceInterface,
   DataInterface,
- } from 'spectra.js';
+ } from 'spectra-js';
 
 function loadDataFromDatabase(resources: ResourceInterface): DataInterface {
   return {
