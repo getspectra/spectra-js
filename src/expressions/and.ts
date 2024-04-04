@@ -1,5 +1,11 @@
 import { AndExpressionDefinition, FieldName } from '@getspectra/spectra-typings';
-import { ExpressionInterface } from '@/types';
+import {
+  DataType,
+  DebuggerOptions,
+  ExpressionInterface,
+  LogicExpressionDebugReport,
+  LogicOperationName,
+} from '@/types';
 
 export class AndExpression implements ExpressionInterface {
   private expressions: Array<ExpressionInterface>;
@@ -8,14 +14,8 @@ export class AndExpression implements ExpressionInterface {
     this.expressions = expressions;
   }
 
-  public getOperation(): string {
-    return 'AND';
-  }
-
-  public getExpression(): AndExpressionDefinition {
-    return {
-      and: this.expressions.map((expression) => expression.getExpression()),
-    };
+  public getName(): string {
+    return LogicOperationName.AND;
   }
 
   public getFields(): Array<FieldName> {
@@ -24,11 +24,25 @@ export class AndExpression implements ExpressionInterface {
     }, [] as Array<FieldName>);
   }
 
-  public evaluate(data: object): boolean {
-    return this.expressions.every((expression) => expression.evaluate(data));
+  public getDefinition(): AndExpressionDefinition {
+    return {
+      and: this.expressions.map((expression) => expression.getDefinition()),
+    };
   }
 
   public jsonSerialize(): string {
-    return JSON.stringify(this.getExpression());
+    return JSON.stringify(this.getDefinition());
+  }
+
+  public evaluate(data: DataType): boolean {
+    return this.expressions.every((expression) => expression.evaluate(data));
+  }
+
+  public debug(data: DataType, options: DebuggerOptions): LogicExpressionDebugReport {
+    return {
+      name: this.getName(),
+      value: this.evaluate(data),
+      expressions: this.expressions.map((expression) => expression.debug(data, options)),
+    };
   }
 }

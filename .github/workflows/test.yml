@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      pages: write
+      contents: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v4

@@ -4,7 +4,7 @@ import {
   AndExpressionDefinition,
   OrExpressionDefinition,
   NotExpressionDefinition,
-  ArgumentRef,
+  RefValue,
 } from '@getspectra/spectra-typings';
 import {
   BinaryExpression,
@@ -14,16 +14,10 @@ import {
 } from '@/expressions';
 import { ExpressionInterface } from '@/types';
 
-/**
- * @description Check if the key is an ArgumentRef.
- */
-export function isArgumentRef(key: any): key is ArgumentRef {
-  return typeof key === 'object' && 'ref' in key && 'type' in key;
+export function isRefValue(key: any): key is RefValue {
+  return key !== null && typeof key === 'object' && 'ref' in key;
 }
 
-/**
- * @description Check if an expression is a valid expression interface.
- */
 export function isValidExpressionInterface(
   expression: any
 ): expression is ExpressionInterface {
@@ -35,10 +29,7 @@ export function isValidExpressionInterface(
   );
 }
 
-/**
- * @description Check if an expression is a valid binary expression definition.
- */
-export function isValidBinaryExpressionDefine(
+export function isValidBinaryExpressionDefinition(
   expression: any
 ): expression is BinaryExpressionDefinition {
   if (!Array.isArray(expression)) {
@@ -69,21 +60,14 @@ export function isValidBinaryExpressionDefine(
     return true;
   }
 
-  if (
-    typeof right === 'object' &&
-    right.type === 'field' &&
-    typeof right.ref === 'string'
-  ) {
+  if (typeof right === 'object' && typeof right.ref === 'string') {
     return true;
   }
 
   return false;
 }
 
-/**
- * @description Check if an expression is a valid AND expression definition.
- */
-export function isValidAndExpressionDefine(
+export function isValidAndExpressionDefinition(
   expression: any
 ): expression is AndExpressionDefinition {
   if (typeof expression !== 'object') {
@@ -97,10 +81,7 @@ export function isValidAndExpressionDefine(
   return true;
 }
 
-/**
- * @description Check if an expression is a valid OR expression definition.
- */
-export function isValidOrExpressionDefine(
+export function isValidOrExpressionDefinition(
   expression: any
 ): expression is OrExpressionDefinition {
   if (typeof expression !== 'object') {
@@ -114,26 +95,20 @@ export function isValidOrExpressionDefine(
   return true;
 }
 
-/**
- * @description Check if an expression is a valid NOT expression definition.
- */
-export function isValidNotExpressionDefine(
+export function isValidNotExpressionDefinition(
   expression: any
 ): expression is NotExpressionDefinition {
   return typeof expression === 'object' && expression.not !== undefined;
 }
 
-/**
- * @description Check if an expression is a valid expression definition.
- */
 export function isValidExpressionDefine(
   expression: any
 ): expression is ExpressionDefinition {
   return (
-    isValidBinaryExpressionDefine(expression) ||
-    isValidAndExpressionDefine(expression) ||
-    isValidOrExpressionDefine(expression) ||
-    isValidNotExpressionDefine(expression)
+    isValidBinaryExpressionDefinition(expression) ||
+    isValidAndExpressionDefinition(expression) ||
+    isValidOrExpressionDefinition(expression) ||
+    isValidNotExpressionDefinition(expression)
   );
 }
 
@@ -145,19 +120,19 @@ export function normalizeExpression(expression: any): ExpressionInterface {
     return expression;
   }
 
-  if (isValidBinaryExpressionDefine(expression)) {
+  if (isValidBinaryExpressionDefinition(expression)) {
     return new BinaryExpression(expression[0], expression[1], expression[2]);
   }
 
-  if (isValidAndExpressionDefine(expression)) {
+  if (isValidAndExpressionDefinition(expression)) {
     return new AndExpression(expression.and.map(normalizeExpression));
   }
 
-  if (isValidOrExpressionDefine(expression)) {
+  if (isValidOrExpressionDefinition(expression)) {
     return new OrExpression(expression.or.map(normalizeExpression));
   }
 
-  if (isValidNotExpressionDefine(expression)) {
+  if (isValidNotExpressionDefinition(expression)) {
     return new NotExpression(normalizeExpression(expression.not));
   }
 

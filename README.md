@@ -26,34 +26,6 @@ pnpm install @getspectra/spectra-js
 
 ## Usage
 
-```ts
-import {
-  Policy,
-  Spectra,
-  parseDependences,
-  ResourceInterface,
-  DataInterface,
- } from '@getspectra/spectra-js';
-
-function loadDataFromDatabase(resources: ResourceInterface): DataInterface {
-  return {
-    'user.id': 2,
-  };
-}
-
-const policy = new Policy({
-  applyFilter: ['user.id', '=', 2],
-  permissions: ['EDIT_FILE'],
-  effect: 'DENY',
-});
-
-const dataDependencies = parseDependences(policy.getApplyFilter());
-const resources = loadDataFromDatabase(dataDependencies);
-const result = Spectra.validate([policy], resources);
-
-console.info(result); // false
-```
-
 See [exapmle](./example/) for more usage.
 
 ## License

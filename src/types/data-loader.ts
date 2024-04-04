@@ -1,9 +1,16 @@
-/**
- * @description Interface for the resource dependencies parsed from the policy.
- */
-export type ResourceInterface = Record<string, Array<string>>;
+import { FieldName } from '@getspectra/spectra-typings';
 
 /**
- * @description Interface for the data loaded from the database.
+ * @description Data type.
  */
-export type DataInterface = Record<string, any>;
+export type DataType = Record<FieldName, any>;
+
+/**
+ * @description Data loader function.
+ */
+export type DataLoaderFunction = (fields: Array<FieldName>) => DataType;
+
+/**
+ * @description Interface for the data loader class.
+ */
+export type DataLoaderInterface = { load: DataLoaderFunction };

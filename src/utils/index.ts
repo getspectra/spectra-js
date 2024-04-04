@@ -1,4 +1,4 @@
+export * from './data-loader';
 export * from './expression';
-export * from './compare';
-export * from './policy';
 export * from './evaluate';
+export * from './policy';

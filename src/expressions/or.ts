@@ -1,5 +1,11 @@
 import { FieldName, OrExpressionDefinition } from '@getspectra/spectra-typings';
-import { ExpressionInterface } from '@/types';
+import {
+  DataType,
+  DebuggerOptions,
+  ExpressionInterface,
+  LogicExpressionDebugReport,
+  LogicOperationName,
+} from '@/types';
 
 export class OrExpression implements ExpressionInterface {
   private expressions: Array<ExpressionInterface>;
@@ -8,14 +14,8 @@ export class OrExpression implements ExpressionInterface {
     this.expressions = expressions;
   }
 
-  public getOperation(): string {
-    return 'OR';
-  }
-
-  public getExpression(): OrExpressionDefinition {
-    return {
-      or: this.expressions.map((expression) => expression.getExpression()),
-    };
+  public getName(): string {
+    return LogicOperationName.OR;
   }
 
   public getFields(): Array<FieldName> {
@@ -24,11 +24,29 @@ export class OrExpression implements ExpressionInterface {
     }, [] as Array<FieldName>);
   }
 
-  public evaluate(data: object): boolean {
-    return this.expressions.some((expression) => expression.evaluate(data));
+  public getExpressons(): Array<ExpressionInterface> {
+    return this.expressions;
+  }
+
+  public getDefinition(): OrExpressionDefinition {
+    return {
+      or: this.expressions.map((expression) => expression.getDefinition()),
+    };
   }
 
   public jsonSerialize(): string {
-    return JSON.stringify(this.getExpression());
+    return JSON.stringify(this.getDefinition());
+  }
+
+  public evaluate(data: DataType): boolean {
+    return this.expressions.some((expression) => expression.evaluate(data));
+  }
+
+  public debug(data: DataType, options: DebuggerOptions): LogicExpressionDebugReport {
+    return {
+      name: this.getName(),
+      value: this.evaluate(data),
+      expressions: this.expressions.map((expression) => expression.debug(data, options)),
+    };
   }
 }

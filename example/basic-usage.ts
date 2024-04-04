@@ -1,40 +1,26 @@
-import {
-  BinaryExpression,
-  Policy,
-  Spectra,
-  parseDependences,
-  ResourceInterface,
-  DataInterface,
-} from '../src';
+import { BinaryExpression, Policy, Spectra, DataLoaderFunction } from '../src';
 
-const ALL_POLICIES = [
-  new Policy({
-    applyFilter: new BinaryExpression('user.id', '=', 1),
-    permissions: ['EDIT_FILE'],
-    effect: 'ALLOW',
-  }),
-  new Policy({
-    applyFilter: new BinaryExpression('user.id', '=', 2),
-    permissions: ['EDIT_FILE'],
-    effect: 'DENY',
-  }),
-];
-
-const resourcesToLoad = ALL_POLICIES.reduce((memo, p) => {
-  const dataDependencies = parseDependences(p.getApplyFilter());
-  return Object.assign(memo, dataDependencies);
-}, {} as ResourceInterface);
-
-function loadDataFromDatabase(resources: ResourceInterface): DataInterface {
+const loadDataFromDatabase: DataLoaderFunction = () => {
   return {
     'user.id': 1,
     'user.name': 'Amiya',
     'file.name': 'file.txt',
   };
-}
+};
 
-const resources = loadDataFromDatabase(resourcesToLoad);
+const ALL_POLICIES = [
+  new Policy({
+    permissions: ['EDIT_FILE'],
+    effect: 'ALLOW',
+    filter: new BinaryExpression('user.id', '=', 1),
+  }),
+  new Policy({
+    permissions: ['EDIT_FILE'],
+    effect: 'DENY',
+    filter: new BinaryExpression('user.id', '=', 2),
+  }),
+];
 
-const result = Spectra.validate(ALL_POLICIES, resources);
+const result = Spectra.validate(ALL_POLICIES, loadDataFromDatabase, 'EDIT_FILE');
 
 console.info(result); // true

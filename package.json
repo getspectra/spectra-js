@@ -36,6 +36,6 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@getspectra/spectra-typings": "^0.0.5"
+    "@getspectra/spectra-typings": "^0.0.6"
   }
 }

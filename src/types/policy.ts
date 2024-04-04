@@ -5,6 +5,6 @@ export type PolicyEffect = 'ALLOW' | 'DENY';
 export type PolicyInterface = {
   description?: string;
   permissions: Array<string>;
-  applyFilter: ExpressionInterface;
   effect: PolicyEffect;
+  filter: ExpressionInterface;
 };

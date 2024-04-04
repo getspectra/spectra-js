@@ -1,10 +1,12 @@
 import { ExpressionDefinition, FieldName } from '@getspectra/spectra-typings';
-import { DataInterface } from './data-loader';
+import { DebuggerOptions, ExpressionDebugReport } from './debugger';
+import { DataType } from './data-loader';
 
 export type ExpressionInterface = {
-  getOperation(): string;
-  getExpression(): ExpressionDefinition;
+  getName(): string;
   getFields(): Array<FieldName>;
-  evaluate(data: DataInterface): boolean;
+  getDefinition(): ExpressionDefinition;
   jsonSerialize(): string;
+  evaluate(data: DataType): boolean;
+  debug(data: DataType, options: DebuggerOptions): ExpressionDebugReport;
 };

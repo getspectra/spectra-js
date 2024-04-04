@@ -1,5 +1,12 @@
 import { describe, expect, test } from '@jest/globals';
-import { BinaryExpression, Policy, and, bisectArray, parseDependences } from '@/index';
+import {
+  BinaryExpression,
+  DataType,
+  Policy,
+  and,
+  bisectArray,
+  getValueFromKey,
+} from '@/index';
 
 describe('Policy Utils', () => {
   test('bisectArray', () => {
@@ -9,29 +16,20 @@ describe('Policy Utils', () => {
     expect(numbers).toEqual([1, 2, 5, 7]);
   });
 
-  test('parseDependences', () => {
-    const policy = new Policy({
-      applyFilter: and([
-        new BinaryExpression('user.id', '=', 2),
-        ['user.role', '=', 'admin'],
-        ['user.age', '>', { type: 'field', ref: 'sys.age' }],
-        { not: ['team.status', '=', 'inactive'] },
-      ]),
-      permissions: ['EDIT_FILE'],
-      effect: 'DENY',
-    });
-
-    const dataDependencies = parseDependences(policy.getApplyFilter());
-    expect(dataDependencies).toEqual({
-      user: ['id', 'role', 'age'],
-      team: ['status'],
-      sys: ['age'],
-    });
-  });
-
   test('isArgumentRef', () => {});
 
-  test('getValueFromKey', () => {});
+  test('getValueFromKey', () => {
+    const data: DataType = {
+      'user.id': 1,
+      'user.create_at': Date.now(),
+    };
+
+    expect(getValueFromKey(data, 'some')).toEqual(undefined);
+    expect(getValueFromKey(data, 'user.id')).toEqual(data['user.id']);
+    expect(getValueFromKey(data, { ref: 'user.create_at' })).toEqual(
+      data['user.create_at']
+    );
+  });
 });
 
 describe('Compare Utils', () => {
@@ -41,5 +39,17 @@ describe('Compare Utils', () => {
 describe('Expression Utils', () => {
   test('isValidExpressionDefine', () => {});
 
-  test('normalizeExpression', () => {});
+  test('normalizeExpression', () => {
+    const policy = new Policy({
+      filter: and([
+        new BinaryExpression('user.id', '=', 2),
+        ['user.role', '=', 'admin'],
+        ['user.age', '>', { ref: 'sys.age' }],
+        { not: ['team.status', '=', 'inactive'] },
+      ]),
+      permissions: ['EDIT_FILE'],
+      effect: 'DENY',
+    });
+    expect(policy.getFilter()).toBeTruthy();
+  });
 });

@@ -1,29 +1,20 @@
-import {
-  PolicyEffect,
-  ExpressionInterface,
-  PolicyInterface,
-  DataInterface,
-} from '@/types';
+import { PolicyEffect, ExpressionInterface, PolicyInterface } from '@/types';
 
 export class Policy {
   private description: string;
-  private applyFilter: ExpressionInterface;
   private permissions: Array<string>;
   private effect: PolicyEffect;
+  private filter: ExpressionInterface;
 
-  constructor({ description = '', applyFilter, permissions, effect }: PolicyInterface) {
+  constructor({ description = '', permissions, filter, effect }: PolicyInterface) {
     this.description = description;
-    this.applyFilter = applyFilter;
     this.permissions = permissions;
     this.effect = effect;
+    this.filter = filter;
   }
 
   public getDescription(): string {
     return this.description;
-  }
-
-  public getApplyFilter(): ExpressionInterface {
-    return this.applyFilter;
   }
 
   public getPermissions(): Array<string> {
@@ -34,7 +25,7 @@ export class Policy {
     return this.effect;
   }
 
-  public apply(data: DataInterface): boolean {
-    return this.getApplyFilter().evaluate(data);
+  public getFilter(): ExpressionInterface {
+    return this.filter;
   }
 }

@@ -10,16 +10,9 @@ describe('Binary Expression', () => {
   });
 
   test('argument ref serialize', () => {
-    const binary = new BinaryExpression('user.id', '=', {
-      type: 'field',
-      ref: 'file.creator_id',
-    });
+    const binary = new BinaryExpression('user.id', '=', { ref: 'file.creator_id' });
     const serializedBinary = binary.jsonSerialize();
-    const expected = JSON.stringify([
-      'user.id',
-      '=',
-      { type: 'field', ref: 'file.creator_id' },
-    ]);
+    const expected = JSON.stringify(['user.id', '=', { ref: 'file.creator_id' }]);
     expect(serializedBinary).toBe(expected);
   });
 });
