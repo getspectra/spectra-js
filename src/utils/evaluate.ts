@@ -30,7 +30,9 @@ function compareArray<T>(leftValue: T, operation: ArrayOperation, rightValue: Ar
     case OperationEnum.NOT_IN:
       return !rightValue.includes(leftValue);
     default:
-      throw new Error(`[spectra] Operation ${operation} is not supported.`);
+      throw new Error(
+        `[spectra] Operation is not supported. ${leftValue} ${operation} ${rightValue}`
+      );
   }
 }
 
@@ -60,7 +62,9 @@ export function compareValue<T = number>(
       if (!Array.isArray(leftValue) && Array.isArray(rightValue)) {
         return compareArray(leftValue, operation as ArrayOperation, rightValue);
       } else {
-        throw new Error(`[spectra] Operation ${operation} is not supported.`);
+        throw new Error(
+          `[spectra] Operation is not supported. ${leftValue} ${operation} ${rightValue}`
+        );
       }
   }
 }

@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { Policy, BinaryExpression } from '@/index';
+import { Policy, BinaryExpression, Spectra } from '@/index';
 
 describe('Policies', () => {
   test('getter', () => {
@@ -25,7 +25,12 @@ describe('Policies', () => {
       effect: 'DENY',
     });
 
-    expect(allowPolicy.getEffect()).toBe('ALLOW');
-    expect(denyPolicy.getEffect()).toBe('DENY');
+    const result = Spectra.validate(
+      [allowPolicy, denyPolicy],
+      { load: () => ({ 'user.id': 1 }) },
+      'EDIT_FILE'
+    );
+
+    expect(result).toBe(true);
   });
 });

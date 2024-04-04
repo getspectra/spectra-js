@@ -1,10 +1,10 @@
 import {
-  ExpressionDefinition,
   BinaryExpressionDefinition,
   AndExpressionDefinition,
   OrExpressionDefinition,
   NotExpressionDefinition,
   RefValue,
+  Operation,
 } from '@getspectra/spectra-typings';
 import {
   BinaryExpression,
@@ -12,10 +12,25 @@ import {
   OrExpression,
   NotExpression,
 } from '@/expressions';
-import { ExpressionInterface } from '@/types';
+import { ExpressionInterface, OperationEnum } from '@/types';
 
 export function isRefValue(key: any): key is RefValue {
   return key !== null && typeof key === 'object' && 'ref' in key;
+}
+
+export function isValidOperation(operation: any): operation is Operation {
+  return [
+    OperationEnum.EQ,
+    OperationEnum.NEQ,
+    OperationEnum.NEQ2,
+    OperationEnum.GT,
+    OperationEnum.GTE,
+    OperationEnum.LT,
+    OperationEnum.LTE,
+    OperationEnum.IN,
+    OperationEnum.NIN,
+    OperationEnum.NOT_IN,
+  ].includes(operation);
 }
 
 export function isValidExpressionInterface(
@@ -46,7 +61,7 @@ export function isValidBinaryExpressionDefinition(
     return false;
   }
 
-  if (typeof operation !== 'string') {
+  if (!isValidOperation(operation)) {
     return false;
   }
 
@@ -78,6 +93,10 @@ export function isValidAndExpressionDefinition(
     return false;
   }
 
+  if (expression.and.length <= 1) {
+    return false;
+  }
+
   return true;
 }
 
@@ -99,17 +118,6 @@ export function isValidNotExpressionDefinition(
   expression: any
 ): expression is NotExpressionDefinition {
   return typeof expression === 'object' && expression.not !== undefined;
-}
-
-export function isValidExpressionDefine(
-  expression: any
-): expression is ExpressionDefinition {
-  return (
-    isValidBinaryExpressionDefinition(expression) ||
-    isValidAndExpressionDefinition(expression) ||
-    isValidOrExpressionDefinition(expression) ||
-    isValidNotExpressionDefinition(expression)
-  );
 }
 
 /**
