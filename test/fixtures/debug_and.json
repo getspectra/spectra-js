@@ -1,0 +1,18 @@
+{
+  "and": [
+    ["user.id", "<>", null],
+    { "not": ["user.name", "!=", null] },
+    {
+      "or": [
+        ["team.name", "<>", null],
+        ["team.remark", "!=", null]
+      ]
+    },
+    {
+      "and": [
+        ["file.size", ">", 0],
+        ["file.name", "<>", null]
+      ]
+    }
+  ]
+}

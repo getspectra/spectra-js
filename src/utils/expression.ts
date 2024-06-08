@@ -111,6 +111,10 @@ export function isValidOrExpressionDefinition(
     return false;
   }
 
+  if (expression.or.length <= 1) {
+    return false;
+  }
+
   return true;
 }
 

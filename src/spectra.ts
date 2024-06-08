@@ -28,7 +28,7 @@ export class Spectra {
       (p) => p.getEffect() === 'DENY'
     );
 
-    const shouldDeny = denyPolicies.every((p) => {
+    const shouldDeny = denyPolicies.some((p) => {
       return Evaluator.evaluate(relatedData, p.getFilter());
     });
 
@@ -36,7 +36,7 @@ export class Spectra {
       return false;
     }
 
-    return allowPolicies.every((p) => {
+    return allowPolicies.some((p) => {
       return Evaluator.evaluate(relatedData, p.getFilter());
     });
   }
@@ -65,13 +65,13 @@ export class Spectra {
         (p) => p.getEffect() === 'DENY'
       );
 
-      const shouldDeny = denyPolicies.every((p) => {
+      const shouldDeny = denyPolicies.some((p) => {
         return Evaluator.evaluate(relatedData, p.getFilter());
       });
 
       const applied = shouldDeny
         ? false
-        : allowPolicies.every((p) => {
+        : allowPolicies.some((p) => {
             return Evaluator.evaluate(relatedData, p.getFilter());
           });
 

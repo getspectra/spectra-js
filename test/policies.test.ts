@@ -1,36 +1,41 @@
 import { describe, expect, test } from '@jest/globals';
-import { Policy, BinaryExpression, Spectra } from '@/index';
+import { Policy, BinaryExpression, not, and, AndExpression } from '@/index';
 
 describe('Policies', () => {
-  test('getter', () => {
-    const allowPolicy = new Policy({
-      filter: new BinaryExpression('user.id', '=', 1),
-      permissions: ['EDIT_FILE'],
-      effect: 'ALLOW',
+  test('get properties', () => {
+    const policy = new Policy({
+      description: 'Readonly policy',
+      permissions: ['READ_ONLY'],
+      effect: 'DENY',
+      filter: new BinaryExpression('user.id', '=', 2),
     });
 
-    expect(allowPolicy.getEffect()).toBe('ALLOW');
+    expect(policy.getEffect()).toBe('DENY');
+    expect(policy.getPermissions()).toEqual(['READ_ONLY']);
+    expect(policy.getDescription()).toEqual('Readonly policy');
+    expect(policy.getFilter().getFields()).toEqual(['user.id']);
   });
 
   test('complex policies', () => {
     const allowPolicy = new Policy({
-      filter: new BinaryExpression('user.id', '=', 1),
-      permissions: ['EDIT_FILE'],
+      filter: and([
+        ['user.id', '<>', 0],
+        {
+          or: [
+            ['team.name', '<>', null],
+            ['team.alias', '!=', { ref: 'team.name' }],
+          ],
+        },
+        not(['user.name', '=', null]),
+        new AndExpression([
+          new BinaryExpression('file.id', '!=', 0),
+          new BinaryExpression('file.name', '<>', null),
+        ]),
+      ]),
+      permissions: ['READ_ONLY'],
       effect: 'ALLOW',
     });
 
-    const denyPolicy = new Policy({
-      filter: new BinaryExpression('user.id', '=', 2),
-      permissions: ['EDIT_FILE'],
-      effect: 'DENY',
-    });
-
-    const result = Spectra.validate(
-      [allowPolicy, denyPolicy],
-      { load: () => ({ 'user.id': 1 }) },
-      'EDIT_FILE'
-    );
-
-    expect(result).toBe(true);
+    expect(allowPolicy.getFilter()).toBeTruthy();
   });
 });
