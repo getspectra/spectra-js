@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">36.36% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/11</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.84% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -112,28 +112,28 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,14 +148,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -175,13 +175,13 @@ export class AndExpression implements ExpressionInterface {
     this.expressions = expressions;
   }
 &nbsp;
-  public <span class="fstat-no" title="function not covered" >getName(</span>): string {
-<span class="cstat-no" title="statement not covered" >    return LogicOperationName.AND;</span>
+  public getName(): string {
+    return LogicOperationName.AND;
   }
 &nbsp;
-  public <span class="fstat-no" title="function not covered" >getFields(</span>): Array&lt;FieldName&gt; {
-<span class="cstat-no" title="statement not covered" >    return this.expressions.reduce(<span class="fstat-no" title="function not covered" >(f</span>ields, expression) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      return fields.concat(expression.getFields());</span>
+  public getFields(): Array&lt;FieldName&gt; {
+    return this.expressions.reduce((fields, expression) =&gt; {
+      return fields.concat(expression.getFields());
     }, [] as Array&lt;FieldName&gt;);
   }
 &nbsp;
@@ -195,15 +195,15 @@ export class AndExpression implements ExpressionInterface {
     return JSON.stringify(this.getDefinition());
   }
 &nbsp;
-  public <span class="fstat-no" title="function not covered" >evaluate(</span>data: DataType): boolean {
-<span class="cstat-no" title="statement not covered" >    return this.expressions.every(<span class="fstat-no" title="function not covered" >(e</span>xpression) =&gt; <span class="cstat-no" title="statement not covered" >expression.evaluate(data))</span>;</span>
+  public evaluate(data: DataType): boolean {
+    return this.expressions.every((expression) =&gt; expression.evaluate(data));
   }
 &nbsp;
-  public <span class="fstat-no" title="function not covered" >debug(</span>data: DataType, options: DebuggerOptions): LogicExpressionDebugReport {
-<span class="cstat-no" title="statement not covered" >    return {</span>
+  public debug(data: DataType, options: DebuggerOptions): LogicExpressionDebugReport {
+    return {
       name: this.getName(),
       value: this.evaluate(data),
-      expressions: this.expressions.map(<span class="fstat-no" title="function not covered" >(e</span>xpression) =&gt; <span class="cstat-no" title="statement not covered" >expression.debug(data, options))</span>,
+      expressions: this.expressions.map((expression) =&gt; expression.debug(data, options)),
     };
   }
 }
@@ -214,7 +214,7 @@ export class AndExpression implements ExpressionInterface {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-04-04T08:17:19.597Z
+                at 2024-07-07T13:30:49.181Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
